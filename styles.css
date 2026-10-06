@@ -1,0 +1,181 @@
+:root {
+  --sunrise-start: #ff3131;
+  --sunrise-end: #ff914d;
+  --white: #ffffff;
+  --lime: #9eff1f;
+  --shale: #292929;
+  --shale-muted: rgb(41 41 41 / 0.7);
+  --shale-border: rgb(41 41 41 / 0.1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Top nav */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 24px 16px;
+}
+
+.site-header .home {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 24px;
+}
+
+.site-header nav a {
+  font-size: 18px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header a:hover,
+.site-header a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (min-width: 640px) {
+  .site-header {
+    padding: 24px 32px;
+  }
+}
+
+/* Home */
+
+.page-home {
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+  background: var(--sunrise-end);
+  background-image: linear-gradient(
+    to right,
+    var(--sunrise-start),
+    var(--sunrise-end)
+  );
+}
+
+.page-home .site-header {
+  position: absolute;
+  inset: 0 0 auto 0;
+}
+
+.page-home .site-header nav a {
+  transition: color 150ms ease;
+}
+
+.page-home .site-header nav a:hover,
+.page-home .site-header nav a:focus-visible {
+  color: var(--lime);
+}
+
+.page-home main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 96px 24px;
+  text-align: center;
+}
+
+.page-home h1 {
+  margin: 0;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(4rem, 20vw, 16rem);
+  line-height: 1;
+}
+
+.page-home main p {
+  width: 100%;
+  max-width: 32ch;
+  margin: 1.5rem auto 0;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* Thin lime rule between title and subtitle */
+.page-home main p::before {
+  content: "";
+  display: block;
+  width: 400px;
+  max-width: 80%;
+  height: 2px;
+  margin: 0 auto 1.5rem;
+  background: var(--lime);
+}
+
+/* Content pages */
+
+.page-content {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--shale);
+  background: var(--white);
+}
+
+.page-content main {
+  max-width: 65ch;
+  margin: 0 auto;
+  padding: 32px 16px 96px;
+}
+
+.page-content h1,
+.page-content h2,
+.page-content h3 {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  line-height: 1.25;
+}
+
+.page-content h1 {
+  margin: 0 0 8px;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.page-content h2 {
+  margin: 40px 0 8px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.page-content .meta {
+  margin: 0 0 32px;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--shale-muted);
+}
+
+.page-content main a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
