@@ -1,11 +1,14 @@
 :root {
   --sunrise-start: #ff3131;
   --sunrise-end: #ff914d;
+  --orange: #ff914d;
   --white: #ffffff;
+  --sand: #faeddb;
   --lime: #9eff1f;
   --shale: #292929;
   --shale-muted: rgb(41 41 41 / 0.7);
   --shale-border: rgb(41 41 41 / 0.1);
+  --black: #000000;
 }
 
 *,
@@ -32,9 +35,11 @@ body {
 
 .site-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 32px;
+  gap: 8px 32px;
   padding: 24px 16px;
+  line-height: 1.5;
 }
 
 .site-header .home {
@@ -47,7 +52,8 @@ body {
 
 .site-header nav {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 8px 24px;
 }
 
 .site-header nav a {
@@ -68,11 +74,95 @@ body {
   }
 }
 
+/* Shared components */
+
+.label {
+  margin: 0 0 8px;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--shale-muted);
+}
+
+.highlight {
+  background-image: linear-gradient(var(--orange), var(--orange));
+  background-repeat: no-repeat;
+  background-position: 0 90%;
+  background-size: 100% 0.3em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.badge {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 2px 12px;
+  border-radius: 999px;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--orange);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--shale);
+  background: var(--lime);
+  text-decoration: none;
+}
+
+.button:active {
+  opacity: 0.7;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--shale);
+  outline-offset: 2px;
+}
+
 /* Home */
 
 .page-home {
   display: flex;
   flex-direction: column;
+  color: var(--shale);
+  background: var(--sand);
+}
+
+.page-home .site-header {
+  background: var(--white);
+}
+
+.page-home main {
+  flex: 1;
+}
+
+/* Fills the first screen below the 90px site header */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 90px);
+  min-height: calc(100dvh - 90px);
+  padding: 96px 24px;
+  text-align: center;
   color: var(--white);
   background: var(--sunrise-end);
   background-image: linear-gradient(
@@ -82,31 +172,7 @@ body {
   );
 }
 
-.page-home .site-header {
-  position: absolute;
-  inset: 0 0 auto 0;
-}
-
-.page-home .site-header nav a {
-  transition: color 150ms ease;
-}
-
-.page-home .site-header nav a:hover,
-.page-home .site-header nav a:focus-visible {
-  color: var(--lime);
-}
-
-.page-home main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 96px 24px;
-  text-align: center;
-}
-
-.page-home h1 {
+.hero h1 {
   margin: 0;
   font-family: "Space Grotesk", system-ui, sans-serif;
   font-weight: 700;
@@ -114,7 +180,7 @@ body {
   line-height: 1;
 }
 
-.page-home main p {
+.hero p {
   width: 100%;
   max-width: 32ch;
   margin: 1.5rem auto 0;
@@ -122,7 +188,7 @@ body {
 }
 
 /* Thin lime rule between title and subtitle */
-.page-home main p::before {
+.hero p::before {
   content: "";
   display: block;
   width: 400px;
@@ -130,6 +196,46 @@ body {
   height: 2px;
   margin: 0 auto 1.5rem;
   background: var(--lime);
+}
+
+.pitch {
+  max-width: calc(65ch + 48px);
+  margin: 0 auto;
+  padding: 96px 24px 64px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.pitch h2 {
+  margin: 0 0 16px;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.pitch > p:not(.label) {
+  margin: 0;
+}
+
+.pitch > p:not(.label) + .label {
+  margin-top: 64px;
+}
+
+.pitch .button {
+  margin-top: 48px;
+}
+
+.home-footer {
+  display: flex;
+  justify-content: center;
+  padding: 32px 24px 48px;
+}
+
+.home-footer img {
+  width: 96px;
+  height: auto;
+  border-radius: 22px;
 }
 
 /* Content pages */
@@ -166,6 +272,16 @@ body {
   font-weight: 700;
 }
 
+.page-content h3 {
+  margin: 32px 0 8px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.page-content .label + h2 {
+  margin-top: 0;
+}
+
 .page-content .meta {
   margin: 0 0 32px;
   font-family: "Space Mono", ui-monospace, monospace;
@@ -175,7 +291,125 @@ body {
   color: var(--shale-muted);
 }
 
-.page-content main a {
+.page-content main a:not(.button) {
   color: inherit;
   text-underline-offset: 3px;
+}
+
+.page-content blockquote {
+  margin: 64px 0;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* About */
+
+.page-about h1 {
+  margin-bottom: 24px;
+}
+
+/* Student Advisory Cohort */
+
+.page-cohort h1 {
+  margin-bottom: 24px;
+}
+
+.apply-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin: 40px 0;
+  padding: 32px;
+  border-radius: 24px;
+  color: var(--black);
+  background: var(--sunrise-end);
+  background-image: linear-gradient(
+    to right,
+    var(--sunrise-start),
+    var(--sunrise-end)
+  );
+}
+
+.apply-banner .deadline {
+  margin: 0;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.apply-banner .questions {
+  margin: 4px 0 0;
+  font-size: 16px;
+}
+
+.accordion {
+  border-top: 1px solid var(--shale-border);
+}
+
+.accordion details {
+  border-bottom: 1px solid var(--shale-border);
+}
+
+.accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion summary h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.accordion summary i {
+  flex-shrink: 0;
+  font-size: 24px;
+  transition: transform 150ms ease;
+}
+
+.accordion details[open] summary i {
+  transform: rotate(180deg);
+}
+
+.accordion .panel {
+  padding: 0 0 32px;
+}
+
+.accordion .panel > :first-child {
+  margin-top: 0;
+}
+
+.accordion .panel h3 {
+  margin-bottom: 8px;
+}
+
+.accordion .panel .label {
+  margin: 32px 0 0;
+}
+
+.accordion .panel .label + h3 {
+  margin-top: 0;
+}
+
+.accordion .panel li + li {
+  margin-top: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion summary i {
+    transition: none;
+  }
 }
