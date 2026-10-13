@@ -57,6 +57,7 @@ The website runs larger than the app's scale. Sizes are in px; ranges scale with
 | Nav links              | Inter         | 18       | Regular 400                | 1.5         |
 | Page H1                | Space Grotesk | 40       | Bold 700                   | 1.25        |
 | Page H2                | Space Grotesk | 30       | Bold 700                   | 1.25        |
+| Page H3                | Space Grotesk | 22       | Medium 500                 | 1.25        |
 | Page body              | Inter         | 18       | Regular 400                | 1.6         |
 | Micro-label            | Space Mono    | 14       | Regular 400 (+4% tracking) | 1.6         |
 
