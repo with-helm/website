@@ -1,0 +1,2 @@
+SENDGRID_API_KEY=SG.xxxxxxxx
+ALLOWED_ORIGINS=http://localhost:8000

@@ -5,6 +5,7 @@
   --white: #ffffff;
   --sand: #faeddb;
   --lime: #9eff1f;
+  --soft-lime: #c1ff72;
   --shale: #292929;
   --shale-muted: rgb(41 41 41 / 0.7);
   --shale-border: rgb(41 41 41 / 0.1);
@@ -20,6 +21,16 @@
 html,
 body {
   margin: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -125,10 +136,16 @@ body {
   color: var(--shale);
   background: var(--lime);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .button:active {
   opacity: 0.7;
+}
+
+.button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .button:focus-visible {
@@ -198,6 +215,10 @@ body {
   background: var(--lime);
 }
 
+.hero .button {
+  margin-top: 48px;
+}
+
 .pitch {
   max-width: calc(65ch + 48px);
   margin: 0 auto;
@@ -224,6 +245,184 @@ body {
 
 .pitch .button {
   margin-top: 48px;
+}
+
+/* Home: email signup */
+
+.signup {
+  max-width: calc(65ch + 48px);
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.signup h2 {
+  margin: 0 0 16px;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.signup > p:not(.label) {
+  margin: 0;
+}
+
+.signup-card {
+  margin-top: 40px;
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--white);
+}
+
+.signup-card form {
+  display: grid;
+  gap: 24px;
+}
+
+.signup-card .field {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.signup-card legend {
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.signup-more {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .signup-more {
+    animation: signup-reveal 200ms ease-out;
+  }
+}
+
+@keyframes signup-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.signup-card .optional {
+  color: var(--shale-muted);
+}
+
+.signup-card input[type="text"],
+.signup-card input[type="email"],
+.signup-card textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 11px 16px;
+  border: 1px solid var(--shale);
+  border-radius: 12px;
+  font: inherit;
+  color: var(--shale);
+  background: var(--white);
+}
+
+.signup-card textarea {
+  resize: vertical;
+}
+
+.signup-card input:focus-visible,
+.signup-card textarea:focus-visible {
+  outline: 2px solid var(--shale);
+  outline-offset: 2px;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Secondary button styling. The radio is invisible but must stay focusable for keyboard users */
+.choice {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  min-height: 50px;
+  padding: 12px 20px;
+  border: 1px solid var(--shale);
+  border-radius: 999px;
+  background: var(--white);
+  cursor: pointer;
+}
+
+.choice input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choice:has(input:checked) {
+  background: var(--soft-lime);
+}
+
+.choice:has(input:focus-visible) {
+  outline: 2px solid var(--shale);
+  outline-offset: 2px;
+}
+
+.signup-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.signup-status {
+  margin: 0;
+  font-size: 16px;
+}
+
+.signup-status:empty {
+  display: none;
+}
+
+.signup-card .button {
+  justify-self: start;
+}
+
+.signup-thanks h3 {
+  margin: 0 0 8px;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.signup-thanks p {
+  margin: 0;
+}
+
+.signup-thanks:focus {
+  outline: none;
+}
+
+@media (min-width: 640px) {
+  .signup-card {
+    padding: 40px;
+  }
 }
 
 .home-footer {
