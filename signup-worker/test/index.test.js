@@ -7,9 +7,9 @@ const env = {
   ALLOWED_ORIGINS: "https://with-helm.com,https://www.with-helm.com",
   SENDGRID_API_KEY: "SG.test",
   SENDGRID_LIST_ID: "list-123",
-  SENDGRID_FIELD_STUDENT: "e1_T",
-  SENDGRID_FIELD_EDUCATOR: "e2_T",
-  SENDGRID_FIELD_NOTE: "e3_T",
+  SENDGRID_FIELD_IS_CURRENT_STUDENT: "e1_N",
+  SENDGRID_FIELD_IS_EDUCATION_PROFESSIONAL: "e2_N",
+  SENDGRID_FIELD_SIGNUP_NOTE: "e3_T",
 };
 const validBody = {
   name: "Ada Lovelace King",
@@ -66,7 +66,7 @@ test("upserts the contact into the SendGrid list", async () => {
         email: "ada@example.com",
         first_name: "Ada",
         last_name: "Lovelace King",
-        custom_fields: { e1_T: "yes", e2_T: "no", e3_T: "Hello there" },
+        custom_fields: { e1_N: 1, e2_N: 0, e3_T: "Hello there" },
       },
     ],
   });
@@ -76,7 +76,14 @@ test("leaves the note field out when no note is given", async () => {
   await post({ ...validBody, note: "  " });
 
   const contact = JSON.parse(sendGridCalls[0].init.body).contacts[0];
-  assert.deepEqual(contact.custom_fields, { e1_T: "yes", e2_T: "no" });
+  assert.deepEqual(contact.custom_fields, { e1_N: 1, e2_N: 0 });
+});
+
+test("sends 0 for a non-student and 1 for an education professional", async () => {
+  await post({ ...validBody, student: "no", educator: "yes" });
+
+  const contact = JSON.parse(sendGridCalls[0].init.body).contacts[0];
+  assert.deepEqual(contact.custom_fields, { e1_N: 0, e2_N: 1, e3_T: "Hello there" });
 });
 
 test("answers CORS preflight from allowed origins", async () => {

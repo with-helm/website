@@ -4,9 +4,9 @@ const YES_NO = ["yes", "no"];
 const REQUIRED_ENV = [
   "SENDGRID_API_KEY",
   "SENDGRID_LIST_ID",
-  "SENDGRID_FIELD_STUDENT",
-  "SENDGRID_FIELD_EDUCATOR",
-  "SENDGRID_FIELD_NOTE",
+  "SENDGRID_FIELD_IS_CURRENT_STUDENT",
+  "SENDGRID_FIELD_IS_EDUCATION_PROFESSIONAL",
+  "SENDGRID_FIELD_SIGNUP_NOTE",
 ];
 
 // SendGrid's own limits: email 254, first_name and last_name 50 each
@@ -110,13 +110,14 @@ export function parseSignup(body) {
 
 export function toSendGridContact(signup, env) {
   const [firstName, ...rest] = signup.name.split(/\s+/);
+  // Both flags are SendGrid Number fields: 1 = true, 0 = false
   const customFields = {
-    [env.SENDGRID_FIELD_STUDENT]: signup.student,
-    [env.SENDGRID_FIELD_EDUCATOR]: signup.educator,
+    [env.SENDGRID_FIELD_IS_CURRENT_STUDENT]: signup.student === "yes" ? 1 : 0,
+    [env.SENDGRID_FIELD_IS_EDUCATION_PROFESSIONAL]: signup.educator === "yes" ? 1 : 0,
   };
   // Omitted fields keep their stored value, so an empty note won't wipe an earlier one
   if (signup.note) {
-    customFields[env.SENDGRID_FIELD_NOTE] = signup.note;
+    customFields[env.SENDGRID_FIELD_SIGNUP_NOTE] = signup.note;
   }
 
   return {
