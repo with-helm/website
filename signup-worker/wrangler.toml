@@ -1,0 +1,11 @@
+name = "helm-signup"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# SENDGRID_API_KEY is a secret: set it with `npx wrangler secret put SENDGRID_API_KEY`
+[vars]
+ALLOWED_ORIGINS = "https://with-helm.com,https://www.with-helm.com"
+SENDGRID_LIST_ID = "6014e335-fc67-42e1-8941-8eaae5d282a5"
+SENDGRID_FIELD_IS_CURRENT_STUDENT = "e4_N"
+SENDGRID_FIELD_IS_EDUCATION_PROFESSIONAL = "w5_N"
+SENDGRID_FIELD_SIGNUP_NOTE = "w1_T"

@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Space+Grotesk:wght@700&family=Space+Mono&display=swap"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script src="signup.js" defer></script>
   </head>
   <body class="page-home">
     <header class="site-header">
@@ -26,6 +27,7 @@
       <section class="hero">
         <h1>HELM</h1>
         <p>Helping students navigate from campus to career, and whatever comes next.</p>
+        <a class="button" href="#signup">Stay in touch</a>
       </section>
 
       <section class="pitch" aria-labelledby="pitch-what">
@@ -56,6 +58,99 @@
         </p>
 
         <a class="button" href="cohort.html">Join the Student Advisory Cohort</a>
+      </section>
+
+      <section class="signup" id="signup" aria-labelledby="signup-title">
+        <p class="label">Stay in touch</p>
+        <h2 id="signup-title">
+          Follow along as we <span class="highlight">build</span>.
+        </h2>
+        <p>
+          Leave your details and we'll keep you posted on HELM, including early
+          access and ways to get involved.
+        </p>
+
+        <div class="signup-card">
+          <form id="signup-form" method="post" data-endpoint="https://helm-signup.with-helm.workers.dev">
+            <div class="field">
+              <label for="signup-name">Name</label>
+              <input
+                id="signup-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                maxlength="100"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="signup-email">Email</label>
+              <input
+                id="signup-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                maxlength="254"
+                required
+              />
+            </div>
+
+            <div class="signup-trap" aria-hidden="true">
+              <label>
+                Company
+                <input name="company" type="text" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
+
+            <!-- Revealed by signup.js once name and email are filled in -->
+            <fieldset class="signup-more" id="signup-more" hidden disabled>
+              <fieldset class="field">
+                <legend>Are you a current student?</legend>
+                <div class="choices">
+                  <label class="choice">
+                    <input type="radio" name="student" value="yes" required />
+                    Yes
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="student" value="no" />
+                    No
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset class="field">
+                <legend>Are you an educator or education professional?</legend>
+                <div class="choices">
+                  <label class="choice">
+                    <input type="radio" name="educator" value="yes" required />
+                    Yes
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="educator" value="no" />
+                    No
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="field">
+                <label for="signup-note">
+                  Note <span class="optional">(optional)</span>
+                </label>
+                <textarea id="signup-note" name="note" rows="4" maxlength="1000"></textarea>
+              </div>
+
+              <p class="signup-status" role="status"></p>
+
+              <button class="button" type="submit">Send</button>
+            </fieldset>
+          </form>
+
+          <div class="signup-thanks" id="signup-thanks" tabindex="-1" hidden>
+            <h3>Thanks, you're on the list.</h3>
+            <p>We'll be in touch soon.</p>
+          </div>
+        </div>
       </section>
     </main>
     <footer class="home-footer">
