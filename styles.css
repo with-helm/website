@@ -454,7 +454,8 @@ body {
 
 .page-content h1,
 .page-content h2,
-.page-content h3 {
+.page-content h3,
+.page-content h4 {
   font-family: "Space Grotesk", system-ui, sans-serif;
   line-height: 1.25;
 }
@@ -475,6 +476,12 @@ body {
   margin: 32px 0 8px;
   font-size: 22px;
   font-weight: 500;
+}
+
+.page-content h4 {
+  margin: 24px 0 8px;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .page-content .label + h2 {
@@ -509,6 +516,12 @@ body {
   margin-bottom: 24px;
 }
 
+/* Privacy policy */
+
+.page-privacy li + li {
+  margin-top: 8px;
+}
+
 /* Student Advisory Cohort */
 
 .page-cohort h1 {
@@ -533,7 +546,7 @@ body {
   );
 }
 
-.apply-banner .deadline {
+.apply-banner .status {
   margin: 0;
   font-family: "Space Grotesk", system-ui, sans-serif;
   font-size: 24px;
